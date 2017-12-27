@@ -11,6 +11,7 @@ import OriginStore from './store/OriginStore';
 import PreferencesStore from './store/PreferencesStore';
 import RealTimeInformationStore from './store/RealTimeInformationStore';
 import TimeStore from './store/TimeStore';
+import ModeStore from './store/ModeStore';
 import FavouriteCityBikeStationStore from './store/FavouriteCityBikeStationStore';
 
 export default config => {
@@ -28,6 +29,7 @@ export default config => {
   app.registerStore(PreferencesStore);
   app.registerStore(RealTimeInformationStore);
   app.registerStore(TimeStore);
+  app.registerStore(ModeStore);
   app.registerStore(FavouriteCityBikeStationStore);
 
   app.plug({

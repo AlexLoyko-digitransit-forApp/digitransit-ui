@@ -113,7 +113,10 @@ class RouteStop extends React.PureComponent {
               r="5"
             />
           </svg>
-          <div className={cx('route-stop-now_line', mode)} />
+          <div
+            style={{ backgroundColor: color }}
+            className={cx('route-stop-now_line', mode)}
+          />
         </div>
         <div className="route-stop-row_content-container">
           <Link to={`/${PREFIX_STOPS}/${stop.gtfsId}`}>

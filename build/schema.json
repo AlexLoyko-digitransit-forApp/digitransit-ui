@@ -807,6 +807,16 @@
                                     }
                                 },
                                 "defaultValue": null
+                            },
+                            {
+                                "name": "modes",
+                                "description": null,
+                                "type": {
+                                   "kind": "SCALAR",
+                                   "name": "String",
+                                   "ofType": null
+                               },
+                               "defaultValue": null
                             }
                         ],
                         "type": {
@@ -3762,12 +3772,16 @@
                         "description": null,
                         "args": [],
                         "type": {
-                            "kind": "OBJECT",
-                            "name": "Route",
-                            "ofType": null
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
+                              "kind": "LIST",
+                              "name": null,
+                              "ofType": {
+                                  "kind": "OBJECT",
+                                  "name": "Route",
+                                  "ofType": null
+                              }
+                         },
+                         "isDeprecated": false,
+                         "deprecationReason": null
                     },
                     {
                         "name": "trip",

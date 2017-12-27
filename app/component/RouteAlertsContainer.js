@@ -22,6 +22,9 @@ const getAlerts = (route, currentTime, intl) => {
       'language',
       intl.locale,
     ]);
+
+    const alertText = alert.alertDescriptionText;
+
     if (!header) {
       header = find(alert.alertHeaderTextTranslations, ['language', 'en']);
     }
@@ -49,11 +52,26 @@ const getAlerts = (route, currentTime, intl) => {
     }
     if (description) {
       description = description.text;
+    } else if (alertText) {
+      description = alertText;
     }
 
-    const startTime = moment(alert.effectiveStartDate * 1000);
-    const endTime = moment(alert.effectiveEndDate * 1000);
-    const sameDay = startTime.isSame(endTime, 'day');
+    let sameDay;
+    let startTime = moment(alert.effectiveStartDate * 1000);
+    let endTime = moment(alert.effectiveEndDate * 1000);
+    let expired;
+
+    if (endTime < 0) {
+      endTime = null;
+      startTime = null;
+      expired = false;
+    } else {
+      expired = startTime > currentTime || currentTime > endTime;
+      sameDay = startTime.isSame(endTime, 'day');
+      endTime = sameDay ? intl.formatTime(endTime) : upperFirst(endTime.calendar(currentTime));
+      startTime = upperFirst(startTime.calendar(currentTime));
+    }
+
 
     return (
       <RouteAlertsRow
@@ -63,13 +81,9 @@ const getAlerts = (route, currentTime, intl) => {
         routeLine={routeLine}
         header={header}
         description={description}
-        endTime={
-          sameDay
-            ? intl.formatTime(endTime)
-            : upperFirst(endTime.calendar(currentTime))
-        }
-        startTime={upperFirst(startTime.calendar(currentTime))}
-        expired={startTime > currentTime || currentTime > endTime}
+        startTime={startTime}
+        endTime={endTime}
+        expired={expired}
       />
     );
   });
@@ -128,6 +142,7 @@ export default Relay.createContainer(RouteAlertsContainerWithTime, {
               text
               language
             }
+            alertDescriptionText
             effectiveStartDate
             effectiveEndDate
           }

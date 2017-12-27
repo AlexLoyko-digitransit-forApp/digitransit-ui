@@ -15,7 +15,9 @@ import { PREFIX_ROUTES } from '../util/path';
 const hasActiveDisruption = (t, alerts) =>
   filter(
     alerts,
-    alert => alert.effectiveStartDate < t && t < alert.effectiveEndDate,
+    alert =>
+      (alert.effectiveStartDate < t && t < alert.effectiveEndDate) ||
+      alert.effectiveEndDate < 0
   ).length > 0;
 
 const DepartureRow = ({ departure, currentTime, distance }, context) => {
