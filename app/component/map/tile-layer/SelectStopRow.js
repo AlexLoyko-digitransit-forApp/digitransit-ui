@@ -4,15 +4,13 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import uniqBy from 'lodash/uniqBy';
 import reject from 'lodash/reject';
-
-import RouteDestination from '../../RouteDestination';
-import routeCompare from '../../../util/route-compare';
 import ComponentUsageExample from '../../ComponentUsageExample';
 
 function getName(pattern) {
   if (pattern.shortName) {
     return (
       <span
+        style={{ color: pattern.color ? `#${pattern.color}` : null }}
         key={pattern.shortName}
         className={`${pattern.type.toLowerCase()} vehicle-number`}
       >
@@ -24,21 +22,21 @@ function getName(pattern) {
 }
 
 function SelectStopRow(props) {
-  const patternData = JSON.parse(props.patterns).sort(routeCompare);
+  const patternData = JSON.parse(props.patterns);
   const patterns = [];
 
   patterns.push(
     <div key="first" className="route-detail-text">
       <span
+        style={{
+          color: patternData[0].color ? `#${patternData[0].color}` : null
+        }}
         className={`${patternData[0].type.toLowerCase()} vehicle-number no-padding`}
       >
         {patternData[0].shortName}
       </span>
       {'\u00a0'}
-      <RouteDestination
-        mode={patternData[0].type}
-        destination={patternData[0].headsign}
-      />
+      {patternData[0].headsign}
     </div>,
   );
 
