@@ -21,7 +21,7 @@ export default function RouteAlertsRow({
       <Icon img="icon-icon_caution" className="caution" />
       <div className="route-alert-contents">
         <div className="route-alert-duration">
-          {startTime} – {endTime}
+          {startTime && endTime ? `${startTime} – ${endTime}` : 'Now'}
         </div>
         <div className={cx('route-alert-header', routeMode)}>{header}</div>
         <div className="route-alert-body">{description}</div>

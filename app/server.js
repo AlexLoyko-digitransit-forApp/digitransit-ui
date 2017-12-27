@@ -22,6 +22,7 @@ import provideContext from 'fluxible-addons-react/provideContext';
 import serialize from 'serialize-javascript';
 import { IntlProvider } from 'react-intl';
 import polyfillService from 'polyfill-service';
+import 'babel-polyfill';
 import fs from 'fs';
 import path from 'path';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
