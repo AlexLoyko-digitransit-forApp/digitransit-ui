@@ -5,7 +5,8 @@ import { getJson } from '../util/xhrPromise';
 // Returns MQTT topic to be subscribed
 // Input: options - route, direction, tripStartTime are used to generate the topic
 function getTopic(options) {
-  const route = options.route ? options.route : '+';
+  let route = options.route ? options.route : '+';
+  route = route.replace('+', '-SBS'); // mqtt topic hack to escape "+" routes
 
   const direction = options.direction
     ? parseInt(options.direction, 10) + 1
