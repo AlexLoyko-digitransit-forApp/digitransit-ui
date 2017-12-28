@@ -124,8 +124,6 @@ class RouteStop extends React.PureComponent {
               <span>{stop.name}</span>
               <div>
                 {stop.code && <StopCode code={stop.code} />}
-                <span className="route-stop-address">{stop.desc}</span>
-                {'\u2002'}
                 {distance && (
                   <WalkDistance
                     className="nearest-route-stop"

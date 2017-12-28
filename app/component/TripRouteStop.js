@@ -65,7 +65,6 @@ const TripRouteStop = props => {
             <span>{props.stop.name}</span>
             <div>
               {props.stop.code && <StopCode code={props.stop.code} />}
-              <span className="route-stop-address">{props.stop.desc}</span>
               {'\u2002'}
               {props.distance && (
                 <WalkDistance
