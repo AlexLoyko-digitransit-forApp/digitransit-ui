@@ -3289,6 +3289,41 @@
             },
             {
                 "kind": "OBJECT",
+                "name": "RouteHeadsignMapType",
+                "description": "Route mapped with its most popular headsign",
+                "fields": [
+                    {
+                        "name": "route",
+                        "description": "Route",
+                        "args": [],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "Route",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "headsign",
+                        "description": "The most popular headsign for a route",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    }
+                ],
+                "inputFields": null,
+                "interfaces": [],
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "OBJECT",
                 "name": "stopAtDistance",
                 "description": null,
                 "fields": [
