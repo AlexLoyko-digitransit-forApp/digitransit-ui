@@ -6,6 +6,7 @@ import orderBy from 'lodash/orderBy';
 import sortBy from 'lodash/sortBy';
 import debounce from 'lodash/debounce';
 import flatten from 'lodash/flatten';
+import _ from 'lodash';
 import { getJson } from './xhrPromise';
 import routeCompare from './route-compare';
 import { distance } from './geo-utils';
@@ -176,9 +177,11 @@ export function getGeocodingResult(
   }
 
   let opts = { text, ...searchParams, ...focusPoint, lang };
-  if (sources) {
-    opts = { ...opts, sources };
-  }
+  const textWords = text.split(' ');
+
+  //if (sources && !_.includes(textWords, '&') && _.includes(textWords, 'and')) {
+    //opts = { ...opts, sources };
+  //}
 
   return getJson(config.URL.PELIAS, opts)
     .then(res =>
